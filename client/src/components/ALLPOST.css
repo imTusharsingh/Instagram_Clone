@@ -1,0 +1,196 @@
+
+
+
+.allallposts{
+    position: absolute;
+    width: 65%;
+    top:2rem;
+    left:50%;
+    transform: translate(-50%,0%);
+    
+    
+}
+
+.allnopostavailabewrapper{
+    width:100%;
+    padding: 1rem;
+    height:70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.allnopostavailabewrapper .allnotpostavailable{
+    color: gray;
+    font-size: 2.5rem;
+    padding-bottom: 1rem;
+}
+
+.allnopostavailabewrapper h4{
+    font-size: .95rem;
+    color: darkgray;
+}
+
+.allpost_section{
+    margin-top: 2rem;
+    border-radius: .2rem;
+    border: .1rem solid rgb(228,228,228);
+}
+
+.allpost_section .allpost_header{
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom:.1rem solid rgb(228,228,228); 
+    padding-right: 1rem;
+}
+
+.allpost_section .allpost_header .allpost_headerleft{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.allpost_section .allpost_header .allpost_headerleft .allpost_icon{
+    font-size: 2.5rem;
+    padding-left: .7rem;
+    padding-right: .7rem;
+}
+
+.allpost_headerleft h2{
+    font-size: 1.6rem;
+}
+
+.allpost_section .allpost_header button{
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: bolder;
+    cursor: pointer;
+    text-transform: capitalize;
+    color: gray;
+}
+
+.allpost_section .allpost_header button:hover{
+   
+    color: black;
+}
+
+h2{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.allpost_section .allpost{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.allpost_section .allpost .allpost_image{
+    width: 100%;
+}
+
+.allpost_section .allpost_bottom{
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+
+.allreact{
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.allreact .allreact_icon{
+    margin-right: 1rem;
+    font-size: 1.8rem;
+    cursor: pointer;
+    
+}
+
+.allreact .allreact_icon.fas.fa-heart{
+    color:red;
+}
+
+.allpost_section .allpost_bottom .allviews{
+    display: flex;
+    align-items:center;
+    justify-content: flex-start;
+    text-align: center;
+    margin-bottom: .7rem;
+}
+
+.allpost_bottom_comment{
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: gray;
+    text-align: left;
+}
+
+
+.allcomments{
+    display: flex;
+    flex-direction: column;
+}
+
+.allcomment{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.allcomment.hide{
+    display: none;
+}
+
+.allcomment span{
+    margin-left: .3rem;
+    font-size: 1.2rem;
+}
+
+.allpost_section .allpostfooter{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top:.1rem solid rgb(228,228,228);
+    margin-bottom: 1rem;
+}
+
+.allpostfooter .allfooter_icon{
+    font-size: 1.6rem;
+    /* margin-right: .8rem; */
+    margin-left: 1rem;
+}
+.allpostfooter input{
+    width: 83%;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+}
+
+.allpostfooter .allcomment_post_btn{
+    margin-right: 1.2rem;
+    font-weight: bold;
+    color: rgba(10,153,246,0.5);
+    cursor: default;
+    
+}
+
+.allpostfooter .allcomment_post_btn.active{
+    color: rgb(10,153,246);
+    cursor: pointer;
+}

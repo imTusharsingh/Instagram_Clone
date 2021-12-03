@@ -1,0 +1,208 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.login_container{
+    height: 100vh;
+    width: 100vw;
+    background: #fafafa;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    
+}
+
+
+.phone_container{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.phone_container .login1{
+    position: absolute;
+    height: 35rem;
+    top: 0;
+    right: 0;
+    margin-top: 5rem;
+    margin-right: 1rem;
+    z-index: 1;
+}
+
+.phone_container .login2{
+    position: absolute;
+    height: 35rem;
+    top: 0;
+    right: 0;
+    margin-right:5rem;
+    margin-top: 3rem;
+}
+
+.right_container{
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.right_container .formwrapper{
+    /* background: burlywood; */
+    position: absolute;
+    top:0;
+    left: 0;
+    padding-top: 4rem;
+    width: 25rem;
+   
+}
+.right_container .formwrapper .form_container{
+   background:#fff;
+   padding: 1rem 2rem;
+   border: .1rem solid rgb(231, 231, 231);
+   margin: .5rem 0;
+}
+
+.right_container .formwrapper .form_container .logo_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    
+    
+}
+.logo_container img{
+    width: 50%;
+    object-fit: contain;
+}
+
+.form_container input{
+    display: flex;
+    width: 100%;
+    height: 2.5rem;
+    margin-bottom: .5rem;
+    background: rgb(248, 245, 245);
+    border:.1rem solid lightgray;
+    font-size: .9rem;
+    font-weight: normal;
+    padding:0 .5rem;
+}
+
+.form_container button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 2.5rem;
+    background: rgb(0, 170, 255);
+    border:.1rem solid lightgray;
+    font-size: .9rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    margin: 1rem 0;
+}
+
+.form_container p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .95rem;
+    font-weight: bold;
+    margin-bottom:1.5rem;
+    position: relative;
+    color: darkgray;
+}
+
+.form_container p::before{
+    position: absolute;
+    content:"";
+    height:.15rem;
+    width: 40%;
+    background-color:lightgray ;
+    left: 0;
+}
+
+.form_container p::after{
+    position: absolute;
+    content:"";
+    height:.15rem;
+    width: 40%;
+    background-color:lightgray ;
+    right: 0;
+}
+
+.form_container .facebookConatiner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .95rem;
+    margin-bottom: 1rem;
+}
+
+.form_container .facebookConatiner i{
+    font-size: 1.2rem;
+    border-radius: 0;
+    padding-right: .5rem;
+    cursor: pointer;
+    color: darkblue;
+}
+
+.form_container .facebookConatiner h3{
+    cursor: pointer;
+    color: darkblue;
+}
+
+.form_container h4{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .94rem;
+    color:rgb(9, 9, 159);
+}
+
+.formwrapper .signup{
+    background: white;
+    display: flex;
+    border: .1rem solid rgb(231, 231, 231);
+    margin: .8rem 0 1rem 0;
+    padding: 1rem 0;
+    align-items: center;
+    justify-content: center;
+    font-size: .95rem;
+}
+
+.formwrapper .signup p strong{
+    color: rgb(0, 94, 255);
+}
+
+.formwrapper span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    
+}
+
+.formwrapper .applink{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.appstore{
+    width: 9rem;
+    object-fit: contain;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.playstore{
+    width: 9rem;
+    object-fit: contain;
+    cursor: pointer;
+}

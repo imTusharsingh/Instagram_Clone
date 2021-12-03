@@ -1,0 +1,415 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.hero_container{
+    width: 100vw;
+    background-color: #fafafa;
+}
+
+
+
+.two_section{
+    display: grid;
+    grid-template-columns: 1fr .5fr;
+    /* margin-top: 1rem; */
+    margin-left:11.5rem;
+    margin-right: 12rem;
+    column-gap: .3rem;
+    padding-top: 4rem;
+}
+
+.two_section .left_section{
+    background: rgb(250,250,250);
+    height: 100vh;
+    width: 42.5rem;
+    margin-bottom: 5rem;
+
+}
+
+.two_section .left_section .status_section{
+    height: 8rem;
+    background: rgb(255,255,255);
+    margin-top: 2rem;
+    border-radius: .2rem;
+    border: .1rem solid rgb(228,228,228);
+    display: flex;
+    align-items: center;
+    overflow-x:auto;
+}
+
+
+
+.two_section .left_section .status_section .status{
+    margin-left: 1rem;
+}
+
+.two_section .left_section .status_section .status .status_icon{
+    font-size: 4.5rem;
+    width: 4.6rem;
+    /* border: 1rem solid rgb(223,134,190); */
+}
+
+.two_section .left_section .status_section .status h4{
+    font-weight: lighter;
+    color: rgb(118,118,118);
+    width: 4.5rem;
+    font-size: .95rem;
+    padding-top: .5rem;
+    overflow-x: hidden;
+}
+
+
+.background{
+    background: rgb(250,250,250);
+}
+
+.nopostavailabewrapper{
+    width:100%;
+    padding: 1rem;
+    height:70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.nopostavailabewrapper .notpostavailable{
+    color: gray;
+    font-size: 2.5rem;
+    padding-bottom: 1rem;
+}
+
+.nopostavailabewrapper h4{
+    font-size: .95rem;
+    color: darkgray;
+}
+
+.post_section{
+    margin-top: 2rem;
+    border-radius: .2rem;
+    border: .1rem solid rgb(228,228,228);
+}
+
+.post_section .post_header{
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom:.1rem solid rgb(228,228,228); 
+    padding-right: 1rem;
+}
+
+.post_section .post_header .post_headerleft{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.post_section .post_header button{
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: bolder;
+    cursor: pointer;
+    text-transform: capitalize;
+    color: gray;
+}
+
+.post_section .post_header button:hover{
+   
+    color: black;
+}
+
+h2{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.post_section .post{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.post_section .post .post_image{
+    width: 100%;
+}
+
+.post_section .post_bottom{
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+
+.react{
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.react .react_icon{
+    margin-right: 1rem;
+    font-size: 1.8rem;
+    cursor: pointer;
+    
+}
+
+.react .react_icon.fas.fa-heart{
+    color:red;
+}
+
+.post_section .post_bottom .views{
+    display: flex;
+    align-items:center;
+    justify-content: flex-start;
+    text-align: center;
+    margin-bottom: .7rem;
+}
+
+.post_bottom_comment{
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: gray;
+    text-align: left;
+}
+
+
+.comments{
+    display: flex;
+    flex-direction: column;
+}
+
+.comment{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+   margin-top: .5rem;
+}
+
+
+
+.comment.hide{
+    display: none;
+}
+
+.comment span{
+    margin-left: .3rem;
+    font-size: 1.2rem;
+}
+
+.post_section .postfooter{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top:.1rem solid rgb(228,228,228);
+    margin-bottom: 1rem;
+}
+
+.postfooter .footer_icon{
+    font-size: 1.6rem;
+    /* margin-right: .8rem; */
+    margin-left: 1rem;
+}
+.postfooter input{
+    width: 83%;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+}
+
+.postfooter .comment_post_btn{
+    margin-right: 1.2rem;
+    font-weight: bold;
+    color: rgba(10,153,246,0.5);
+    cursor: default;
+    
+}
+
+.postfooter .comment_post_btn.active{
+    color: rgb(10,153,246);
+    cursor: pointer;
+}
+
+
+.two_section .right_section{
+    background:transparent;
+    width: 20rem;
+    height: 100vh;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    position: fixed;
+    right:10rem;
+}
+
+.right_section .top_right{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.right_section .top_right .user_info{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.right_section .top_right .user_info .user_icon{
+    font-size: 4rem;
+    margin-right: 1rem;
+}
+
+.top_right .user_info .goprofile{
+    text-decoration: none;
+}
+
+.top_right .user_info .goprofile  .username_info .username{
+    color: black;
+    font-size: 1.2rem;
+}
+
+.top_right .user_info .goprofile .username_info .name{
+    font-size: 1rem;
+    color: gray;
+    font-weight: lighter;
+    text-decoration: none;
+    
+}
+
+.right_section .top_right .switch_account{
+    background:none;
+    border: none;
+    font-weight: bold;
+    color: dodgerblue;
+}
+
+.suggestion_header{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.suggestion_header h2{
+    color: darkgray;
+}
+
+.suggestion_header span{
+    font-size: .95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.suggested_member{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: .8rem;
+}
+
+.suggested_member .member{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.suggested_member .member .suggested_icon{
+    font-size: 2.25rem;
+    margin-right: .85rem;
+}
+
+.suggested_member .member .member_info .follow_info{
+    font-size: .9rem;
+    color: darkgray;
+}
+
+.suggested_member .follow{
+    background:none;
+    border: none;
+    font-weight: bold;
+    color: dodgerblue;
+}
+
+.right_footer{
+    margin-top: 2rem;
+}
+
+.right_footer .top{
+    display: flex;
+    align-items: center;
+    
+}
+
+.right_footer .top li:not(:last-child){
+   margin-right: .3rem;
+}
+
+.right_footer .top li{
+    list-style: none;
+}
+
+.right_footer .top li:not(:first-child)::before{
+    content:"•"; 
+    font-size:.8rem;
+    color: darkgray;
+
+}
+
+
+.right_footer .top li a{
+    color: darkgray;
+    font-size: .77rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.right_footer .middle{
+    display: flex;
+    align-items: center;
+}
+.right_footer .middle li:not(:last-child){
+    margin-right: .3rem;
+ }
+ 
+ .right_footer .middle li{
+     list-style: none;
+ }
+ 
+ .right_footer .middle li:not(:first-child)::before{
+     content:"•"; 
+     font-size:.8rem;
+     color: darkgray;
+ 
+ }
+ 
+ 
+ .right_footer .middle li a{
+     color: darkgray;
+     font-size: .77rem;
+     cursor: pointer;
+     text-decoration: none;
+ }
+
+ .right_footer .bottom{
+    display: flex;
+    align-items: center;
+    margin-top:1.5rem ;
+    font-size: .8rem;
+    color: darkgray;
+ }

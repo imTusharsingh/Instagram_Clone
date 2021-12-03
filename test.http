@@ -1,0 +1,12 @@
+POST http://localhost:4000/post
+Content-Type: application/json
+
+{
+   
+   "post":"post",
+   "caption":"caption",
+   "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTc0ZjIwZGFkOWY0MjhkNDM4OWQ2YWIiLCJpYXQiOjE2MzUwNTQxNDN9.cZmHLolUD93CHEQSRiL3Mmw3pHxP_AftZEQs8qA3SO4"
+
+
+    
+}
