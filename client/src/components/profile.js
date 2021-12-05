@@ -21,6 +21,7 @@ const Profile = () => {
     const [commentbyuser, setcommentbyuser] = useState();
     const [commentId, setcommentId] = useState();
     const [profileimage, setprofileimage] = useState()
+    const [mainprofileimage, setmainprofileimage] = useState()
 
     const [profileimageviewer, setprofileimageviwer] = useState("/images/profilrimage.png")
 
@@ -71,6 +72,7 @@ const Profile = () => {
             const data = res.json();
             if (res.status == 201) {
                 window.alert("profile picture changed succesfully")
+                
                 callMyPost();
             } else {
                 console.log("error error")
@@ -101,11 +103,11 @@ const Profile = () => {
             setstoreonlinename(finduser.name);
             setstorefollowing(finduser.following);
             setstorefollowedBY(finduser.followedBy);
-            setprofileimage(finduser.profileImage.image)
+            setmainprofileimage(finduser.profileImage.image);
             {(finduser.profileImage.image)&& setprofileimageviwer(finduser.profileImage.image)}
            
             
-
+            
 
 
             setuserpost(data)
@@ -114,7 +116,17 @@ const Profile = () => {
             console.log(err)
         }
     }
-
+    useEffect(() => {
+        let data={
+            email:state.email,
+            username:storeonlineuser,
+            name:storeonlinename,
+            _id:storeonlineuserid,
+            image:mainprofileimage
+            }
+        dispatch({type:"USER",payload:data})
+        localStorage.setItem('user',JSON.stringify(data))
+    }, [mainprofileimage])
 
     const like = async (post_Id) => {
 
@@ -218,7 +230,7 @@ const Profile = () => {
 
     useEffect(() => {
         callMyPost()
-        // console.log(userpost);
+        
     }, [])
 
 
@@ -250,8 +262,10 @@ const Profile = () => {
 
             <div className="profile_box" >
                 <div className="profilehead">
+                    <div></div>
+                    <div className="profilemiddlegrid">
                     <div className="profilePhoto">
-                        <Avatar alt="storeonlineuser" src={profileimage} style={{ width: "12rem", height: "12rem", fontSize: "9rem" }} />
+                        <Avatar alt="storeonlineuser" src={mainprofileimage} style={{ width: "12rem", height: "12rem", fontSize: "9rem" }} />
                     </div>
                     <div className="profile_info">
                         <div className="profile_info_top">
@@ -275,12 +289,16 @@ const Profile = () => {
                             <h2>{(storeonlinename) && storeonlinename}</h2>
                         </div>
                     </div>
+                    </div>
+                    <div></div>
                 </div>
 
 
 
 
                 <div className="profilenavbar">
+                    <div></div>
+                    <div className="profilenavbarmiddile">
                     <div className="block">
                         <i className="fa fa-table" > POSTS</i>
                     </div>
@@ -293,9 +311,12 @@ const Profile = () => {
                     <div className="block" style={{ opacity: 0.5, cursor: "default" }}>
                         <i className="fa fas fa-user-tag"> TAGGED</i>
                     </div>
+                    </div>
+                    <div></div>
                 </div>
 
-
+                                <div className="userpostcontainermaingrid">
+                                    <div></div>
                 <div className="userpostcontainer">
                     {userpost.slice(0).reverse().map((currElem, index) => {
                         return (
@@ -384,7 +405,12 @@ const Profile = () => {
 
                     })}
                 </div>
+                <div></div>
+                </div>
 
+
+                    <div className="profilefootergrid">
+                    <div></div>
                 <div className="profile_footer">
                     <div className="topfooter">
                         <a href="#">About</a>
@@ -408,6 +434,8 @@ const Profile = () => {
                         <a href="#">© 2021 Instagram from Facebook</a>
                     </div>
 
+                </div>
+                <div></div>
                 </div>
             </div>
 

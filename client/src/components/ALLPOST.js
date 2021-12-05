@@ -132,6 +132,8 @@ const ALLPOST = () => {
     return (
         <>
             <Mainnav />
+            <div className="allpostgrid">
+                <div></div>
             <div className="allallposts">
 
                 {allPost.length == 0 ?
@@ -153,7 +155,7 @@ const ALLPOST = () => {
                                         <div className="allpost_header">
                                             <div className="allpost_headerleft">
                                                 <Avatar alt={currElem.postedBy.username} src={currElem.postedBy.profileImage.image} style={{ width: "2.5rem", height: "2.5rem", fontSize: "1.5rem", fontWeight: "bolder", background: "rgb(37,37,37)", textTransform: "capitalize", marginLeft: "1rem", marginRight: ".7rem" }} />
-                                                <h2 ><Link to={`/profile/${currElem.postedBy.username}`} style={{ color: 'black' }}>{currElem.postedBy.username}</Link></h2>
+                                                <h2 ><Link to={`/profile/${currElem.postedBy.username}`} style={{ color: 'black',textDecoration:"none" }}>{currElem.postedBy.username}</Link></h2>
                                             </div>
                                             {(storeonlineuser == currElem.postedBy.username) &&
                                                 <button onClick={() => deletePost(currElem.posts.public_id)}>delete</button>}
@@ -217,6 +219,8 @@ const ALLPOST = () => {
 
 
 
+            </div>
+            <div></div>
             </div>
 
         </>

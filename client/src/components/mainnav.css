@@ -17,7 +17,7 @@ nav{
      background-color: #fff;
      border-bottom: .1rem solid #e4e4e4;
      display: grid;
-     grid-template-columns: .5fr 1fr;
+     grid-template-columns: .5fr 1fr 1fr .5fr;
      align-items: center;
      z-index: 1000;
   
@@ -26,10 +26,10 @@ nav{
 nav .logo_container{
     display: flex;
     align-items: baseline;
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: .6rem;
-    /* margin-left: 20rem; */
-
+    margin-left: .2rem;
+    width:100%;
 }
 nav .logo_container img{
     width:7.15rem;
@@ -38,8 +38,7 @@ nav .logo_container img{
 nav .rightnav{
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    margin-right: 11rem;
+    
 }
 
 .rightnav .search_container{

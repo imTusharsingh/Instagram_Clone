@@ -103,9 +103,10 @@ route.post('/signin',async(req,res)=>{
             else{
                 // res.status(200).json({message:"Login Succesfullly"})
                 // ======
-                const {email,username,name,_id}=checkdata
+                const {email,username,name,_id,profileImage}=checkdata;
+                let {image}=profileImage
                
-                res.send({email,username,name,_id}).status(200)
+                res.send({email,username,name,_id,image}).status(200)
                 // console.log(username)
             }
 

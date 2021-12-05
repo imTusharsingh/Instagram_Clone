@@ -5,13 +5,19 @@
 }
 
 .profilehead{
-    display: flex;
+    display: grid;
     align-items: center;
     height:15.5rem;
-    margin-left:11.5rem;
-    margin-right: 12rem;
+    grid-template-columns: .5fr 1.5fr .5fr;
     margin-top: 4rem;
-    border-bottom: .1rem solid lightgray;
+   
+}
+.profilemiddlegrid{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 65rem;
+    padding: 0 8rem;
 }
 
 .profilePhoto{
@@ -83,40 +89,49 @@
 }
   
 .profilenavbar{
+    display: grid;
+    /* margin-left:11.5rem;
+    margin-right: 12rem; */
+    grid-template-columns: .25fr 1fr .25fr;
+    align-items: center;
+    /* justify-content: center; */
+   
+  
+}
+.profilenavbar .profilenavbarmiddile{
     display: flex;
-    margin-left:11.5rem;
-    margin-right: 12rem;
     align-items: center;
     justify-content: center;
+    width: 65rem;
     height: 3.8rem;
 }
 
-.profilenavbar .block{
+
+.profilenavbar .profilenavbarmiddile .block{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 6rem;
+    width: 8rem;
     margin-right: 2rem;
-    /* width: 8rem; */
     height: 100%;
     position: relative;
 }
 
-.profilenavbar .block .fa{
+.profilenavbar .profilenavbarmiddile .block .fa{
     font-size: .95rem;
     color: darkgray;
 }
 
-.profilenavbar .block.last{
+.profilenavbar .profilenavbarmiddile .block.last{
     margin-right: 0;
 }
 
-.profilenavbar .block:hover{
+.profilenavbar .profilenavbarmiddile .block:hover{
     cursor: pointer;
     border-top: .1rem solid black;
 }
 
-.profilenavbar .block:hover .fa{
+.profilenavbar .profilenavbarmiddile .block:hover .fa{
     color: black;
 }
 
@@ -147,6 +162,14 @@
     margin-right: 0;
 }
 
+.profilefootergrid{
+    display: grid;
+    align-items: center;
+    grid-template-columns: .5fr 1.5fr .5fr;
+}
+
+
+
 .profile_footer .bottomfooter{
     display: flex;
     align-items: center;
@@ -168,13 +191,19 @@
     outline: none;
 }
 
+.userpostcontainermaingrid{
+    display: grid;
+    align-items: center;
+    grid-template-columns: .5fr 1.5fr .5fr;
+}
+
 .userpostcontainer{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: .5rem;
-    margin-left:11.5rem;
-    margin-right: 12rem;
     margin-top: .5rem;
+    min-width: 65rem;
+    padding: 0 6rem;
 }
 
 .postcard{

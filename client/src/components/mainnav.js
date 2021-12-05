@@ -99,6 +99,7 @@ const Mainnav = () => {
         <>
             <div className="hero_container">
                 <nav>
+                    <div></div>
                     <div className="logo_container"><img src="/images/logo.png" alt="" /></div>
                     <div className="rightnav">
                         <div className="search_container">
@@ -113,6 +114,7 @@ const Mainnav = () => {
                         <i className="nav_icon fas fa-heart" style={{cursor:"default",opacity:"0.3"}}></i>
                         <NavLink to={(state) && `/profile/${state.username}`}><i className="nav_icon fas fa-user-circle"></i></NavLink>
                     </div>
+                    <div></div>
                 </nav>
             </div>
 

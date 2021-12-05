@@ -14,19 +14,19 @@
 
 .two_section{
     display: grid;
-    grid-template-columns: 1fr .5fr;
-    /* margin-top: 1rem; */
-    margin-left:11.5rem;
-    margin-right: 12rem;
+    grid-template-columns: .5fr 1fr 1fr .5fr;
     column-gap: .3rem;
     padding-top: 4rem;
 }
 
 .two_section .left_section{
     background: rgb(250,250,250);
-    height: 100vh;
-    width: 42.5rem;
+  
+    width:100%;
     margin-bottom: 5rem;
+    display:flex;
+    align-items: flex-end;
+    flex-direction: column;
 
 }
 
@@ -37,6 +37,7 @@
     border-radius: .2rem;
     border: .1rem solid rgb(228,228,228);
     display: flex;
+    width:42.5rem;
     align-items: center;
     overflow-x:auto;
 }
@@ -61,11 +62,11 @@
     padding-top: .5rem;
     overflow-x: hidden;
 }
-
-
-.background{
-    background: rgb(250,250,250);
+.two_section .left_section .allposts{
+    width:42.5rem;
 }
+
+
 
 .nopostavailabewrapper{
     width:100%;
@@ -249,12 +250,13 @@ h2{
 
 .two_section .right_section{
     background:transparent;
-    width: 20rem;
+    /* width: 20rem; */
     height: 100vh;
+    width: 100%;
     margin-left: 2rem;
-    margin-top: 2rem;
-    position: fixed;
-    right:10rem;
+    top: 6.3rem;
+    position: sticky;
+    
 }
 
 .right_section .top_right{
@@ -263,6 +265,7 @@ h2{
     justify-content: space-between;
     margin-top: 1.8rem;
     margin-bottom: 1rem;
+    width: 20rem;
 }
 
 .right_section .top_right .user_info{
@@ -298,6 +301,9 @@ h2{
     font-weight: bold;
     color: dodgerblue;
 }
+.right_section .suggestion_info{
+    width:20rem;
+}
 
 .suggestion_header{
     display: flex;
@@ -329,6 +335,10 @@ h2{
     justify-content: flex-start;
 }
 
+.member_info .memberusername{
+    color:black;
+}
+
 .suggested_member .member .suggested_icon{
     font-size: 2.25rem;
     margin-right: .85rem;
@@ -344,6 +354,7 @@ h2{
     border: none;
     font-weight: bold;
     color: dodgerblue;
+    cursor:pointer;
 }
 
 .right_footer{
