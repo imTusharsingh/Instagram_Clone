@@ -353,7 +353,7 @@ const Hero = () => {
                                             </div>
 
                                         </div>
-                                        {(elem.info == "followed by you") ? <button className="follow" style={{ color: "darkGray" }} onClick={() => checkFollow(elem.username, elem._id)}>Following</button> : <button className="follow" onClick={() => checkFollow(elem.username, elem._id)} >Follow</button>}
+                                        {(elem.info == "follows you"||elem.info =="new user") ? <button className="follow"  onClick={() => checkFollow(elem.username, elem._id)}>Follow</button> : <button className="follow" style={{ color: "darkGray" }} onClick={() => checkFollow(elem.username, elem._id)} >Following</button>}
 
                                     </div>
                                 </>

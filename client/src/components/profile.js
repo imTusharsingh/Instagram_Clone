@@ -72,6 +72,15 @@ const Profile = () => {
             const data = res.json();
             if (res.status == 201) {
                 window.alert("profile picture changed succesfully")
+                let data={
+                    email:state.email,
+                    username:state.username,
+                    name:state.name,
+                    _id:state._id,
+                    image:mainprofileimage
+                    }
+                    dispatch({type:"USER",payload:data})
+                    localStorage.setItem('user',JSON.stringify(data))
                 
                 callMyPost();
             } else {
@@ -116,17 +125,6 @@ const Profile = () => {
             console.log(err)
         }
     }
-    useEffect(() => {
-        let data={
-            email:state.email,
-            username:storeonlineuser,
-            name:storeonlinename,
-            _id:storeonlineuserid,
-            image:mainprofileimage
-            }
-        dispatch({type:"USER",payload:data})
-        localStorage.setItem('user',JSON.stringify(data))
-    }, [mainprofileimage])
 
     const like = async (post_Id) => {
 

@@ -127,29 +127,30 @@ route.post('/suggestion',Authenticate,async(req,res)=>{
           
            const data=await User.aggregate([{$sample:{size:4-filteredarray.length}}])
            console.log(data);
+           let check=false;
 
            for(let j=0;j<data.length;j++){
            for(let i=0;i<following.length;i++){
               
                    if(following[i].username==data[j].username){
-                    matched=true;
+                    check=true;
                     break;
                    }
                    
                    
 
                }
-               if(matched==true && data[j].username!=req.username){
+               if(check==true && data[j].username!=req.username){
                 let info="followed by you"
                    let {username,_id,profileImage}=data[j]
                    filteredarray.push({username,_id,profileImage,info})
                }
-            else if(matched==false  && data[j].username!=req.username){
+            else if(check==false  && data[j].username!=req.username){
                 let info="new user"
                 let {username,_id,profileImage}=data[j]
                 filteredarray.push({username,_id,profileImage,info});
             }
-            matched=false;
+            check=false;
        
         }
       
