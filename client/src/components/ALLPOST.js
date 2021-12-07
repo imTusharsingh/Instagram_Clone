@@ -20,7 +20,7 @@ const ALLPOST = () => {
 
     const callAllPost = async () => {
         try {
-            const res = await fetch('/allpost', {
+            const res = await fetch('/allpostroute', {
                 method: "GET",
                 headers: {
                     Accept: "application/json",

@@ -195,7 +195,7 @@ route.get('/followedpost', Authenticate, async (req, res) => {
 })
 
 
-route.get('/allpost', Authenticate, async (req, res) => {
+route.get('/allpostroute', Authenticate, async (req, res) => {
     const onlineuser = req.username;
     const onlinename =req.name;
     const profileImage=req.user.profileImage.image
