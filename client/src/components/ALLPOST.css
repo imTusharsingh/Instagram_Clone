@@ -147,6 +147,10 @@ h2{
     flex-direction: column;
 }
 
+.allcomment.deactive{
+    display: none;
+}
+
 .allcomment{
     display: flex;
     align-items: center;

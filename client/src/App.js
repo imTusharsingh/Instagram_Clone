@@ -15,7 +15,7 @@ export const Usercontext = createContext();
 function App() {
 
   const [state, dispatch] = useReducer(reducer, initialState)
-  
+
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'))
@@ -31,11 +31,14 @@ function App() {
 
       {!state ?
         <>
-         <Usercontext.Provider value={{ state, dispatch }}>
-         <Route exact path="/">
-         <Loginpage />
+          <Usercontext.Provider value={{ state, dispatch }}>
+          <Route exact path="/">
+          <Loginpage />
             </Route>
 
+            <Route  path="/allpost">
+            <Loginpage />
+            </Route>
 
             <Route path="/signup">
               <Signuppage />
@@ -45,16 +48,14 @@ function App() {
               <Loginpage />
             </Route>
 
-            <Route exact path="/allpost">
-            <Loginpage />
-            </Route>
 
             <Route path="/profile/:username">
             <Loginpage />
             </Route>
 
-         </Usercontext.Provider>
-         
+
+          </Usercontext.Provider>
+
         </> :
         <>
           <Usercontext.Provider value={{ state, dispatch }}>
@@ -64,8 +65,8 @@ function App() {
               <Hero />
             </Route>
 
-            <Route exact path="/allpost">
-            <ALLPOST/>
+            <Route  path="/allpost">
+              <ALLPOST />
             </Route>
 
             <Route path="/signup">
@@ -81,15 +82,13 @@ function App() {
               <Profile />
             </Route>
 
-            
+
 
 
           </Usercontext.Provider>
 
 
-          {/* <Loginpage/> */}
-          {/* <Hero /> */}
-          {/* <Profile /> */}
+        
         </>}
     </>
 

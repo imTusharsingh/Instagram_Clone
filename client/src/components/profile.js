@@ -385,7 +385,7 @@ const Profile = () => {
 
                                                 <i className="footerfull_icon far fa-smile"></i>
                                                 {(postindex == index) ?
-                                                    <input type="text" placeholder="Add a comment" value={(commentId == currElem._id) ? commentbyuser : null} onChange={(e) => settingcommentbyuser(currElem._id, e)} /> :
+                                                    <input type="text" placeholder="Add a comment" value={(commentId == currElem._id) ? commentbyuser : ""} onChange={(e) => settingcommentbyuser(currElem._id, e)} /> :
                                                     <input type="text" placeholder="Add a comment" />}
                                                 {(commentbyuser) ? <p className="commentfull_post_btn active" onClick={() => commentload(currElem._id, commentbyuser)} >Post</p> :
                                                     <p className="commentfull_post_btn">Post</p>}
@@ -397,7 +397,7 @@ const Profile = () => {
                                         </div>
                                     </div>
                                 </div>
-                                {/* } */}
+                              
                             </>
                         )
 

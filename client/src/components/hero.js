@@ -17,8 +17,12 @@ const Hero = () => {
     const [commentbyuser, setcommentbyuser] = useState();
     const [commentId, setcommentId] = useState()
     const [suggestiondata, setsuggestiondata] = useState();
+    const [show, setshow] = useState(3);
+    const [cid,setcid] = useState();
     const [cookies, removeCookie] = useCookies();
     const { state, dispatch } = useContext(Usercontext)
+
+
 
     const logout = async () => {
         fetch('/signout', {
@@ -194,6 +198,11 @@ const Hero = () => {
         }
     }
 
+    const funshow=(length,id)=>{
+        setshow(length);
+        setcid(id);
+    }
+
     useEffect(() => {
         callPost();
         suggestions();
@@ -241,12 +250,12 @@ const Hero = () => {
                                     return (
                                         <>
 
-                                            <div className="post_section" key="post">
+                                            <div className="post_section" key={currElem._id}>
 
 
                                                 <div className="post_header">
                                                     <div className="post_headerleft">
-                                                        {/* <i className="post_icon fas fa-user-circle"></i> */}
+                                                      
                                                         <Avatar alt={currElem.postedBy.username} src={currElem.postedBy.profileImage.image} style={{ width: "2.5rem", height: "2.5rem", fontSize: "1.5rem", fontWeight: "bolder", background: "rgb(37,37,37)", textTransform: "capitalize", marginLeft: "1rem", marginRight: ".7rem" }} />
                                                         <h2 ><Link to={`/profile/${currElem.postedBy.username}`} style={{ textDecoration: "none", color: "black" }}>{currElem.postedBy.username}</Link></h2>
                                                     </div>
@@ -265,29 +274,53 @@ const Hero = () => {
 
 
                                                         {currElem.likes.includes(storeonlineuser) ? <i className="react_icon fas fa-heart" onClick={() => like(currElem._id)}></i> : <i className="react_icon far fa-heart" onClick={() => like(currElem._id)}></i>}
-                                                        <i className="react_icon far fa-comment"></i>
+                                                      
+                                                          {(show == 3) ?
+                                                           <i className="react_icon far fa-comment" onClick={ ()=>funshow(currElem.comments.length,currElem._id)}></i>:
+                                                           <>
+                                                            {(cid==currElem._id)? <i className="react_icon fas fa-comment" ></i>:
+                                                             <i className="react_icon far fa-comment" onClick={ ()=>funshow(currElem.comments.length,currElem._id)}></i>}
+                                                             </>}
 
                                                     </div>
                                                     <div className="views">
                                                         <h2 ><strong>{currElem.likes.length}</strong> likes</h2>
                                                     </div>
-                                                    <button className="all_comment">
-                                                        View all {currElem.comments.length} comments
-                                                    </button>
+                                                    {(show == 3) ?
+                                                        <button className="all_comment" onClick={() => funshow(currElem.comments.length,currElem._id)}
+                                                        style={{background:"transparent",border:"none",cursor:"pointer",outline:"none"}}>
+                                                            View {currElem.comments.length} comments
+                                                        </button> :<>
+                                                        {(cid==currElem._id)? <button className="all_comment" onClick={() => setshow(3)}
+                                                        style={{background:"transparent",border:"none",cursor:"pointer",outline:"none"}}>
+                                                            Hide comments
+                                                        </button>:<button className="all_comment" onClick={() => funshow(currElem.comments.length,currElem._id)}
+                                                        style={{background:"transparent",border:"none",cursor:"pointer",outline:"none"}}>
+                                                            View {currElem.comments.length} comments
+                                                        </button>}</>
+                                                       }
 
                                                     <div className="comments">
 
 
-                                                        {currElem.comments.slice(0).reverse().map((elem) => {
+                                                        {currElem.comments.slice(0).reverse().map((elem, index) => {
                                                             return (
                                                                 <>
-
-
-                                                                    <div className="comment" key='commentsgcg'>
+                                                                {(cid==currElem._id)?<>
+                                                                    <div key={elem._id} className={(index < show) ? "comment" : "comment deactive"}>
                                                                         <Avatar alt={elem.commentedBy.username} src={elem.commentedBy.profileImage.image} style={{ width: "1.8rem", height: "1.8rem", fontSize: "1rem", fontWeight: "bolder", background: "rgb(37,37,37)", textTransform: "capitalize", marginRight: ".5rem" }} />
                                                                         <h2>{elem.commentedBy.username}</h2>
                                                                         <span>{elem.commentbyuser}</span>
                                                                     </div>
+                                                                </>:
+                                                                <>
+                                                                 <div key={elem._id} className={(index < 3) ? "comment" : "comment deactive"}>
+                                                                        <Avatar alt={elem.commentedBy.username} src={elem.commentedBy.profileImage.image} style={{ width: "1.8rem", height: "1.8rem", fontSize: "1rem", fontWeight: "bolder", background: "rgb(37,37,37)", textTransform: "capitalize", marginRight: ".5rem" }} />
+                                                                        <h2>{elem.commentedBy.username}</h2>
+                                                                        <span>{elem.commentbyuser}</span>
+                                                                    </div>
+                                                                </>}
+                                                                   
 
                                                                 </>
                                                             )
@@ -300,7 +333,7 @@ const Hero = () => {
 
                                                 <div className="postfooter">
                                                     <i className="footer_icon far fa-smile" style={{ opacity: 0.2, cursor: "default" }}></i>
-                                                    <input type="text" placeholder="Add a comment" value={(commentId == currElem._id) ? commentbyuser : null} onChange={(e) => settingcommentbyuser(currElem._id, e)} />
+                                                    <input type="text" placeholder="Add a comment" value={(commentId == currElem._id) ? commentbyuser : ""} onChange={(e) => settingcommentbyuser(currElem._id, e)} />
                                                     {(commentbyuser) ? <p className="comment_post_btn active" onClick={() => commentload(currElem._id, commentbyuser)} >Post</p> :
                                                         <p className="comment_post_btn">Post</p>}
 
@@ -353,7 +386,7 @@ const Hero = () => {
                                             </div>
 
                                         </div>
-                                        {(elem.info == "follows you"||elem.info =="new user") ? <button className="follow"  onClick={() => checkFollow(elem.username, elem._id)}>Follow</button> : <button className="follow" style={{ color: "darkGray" }} onClick={() => checkFollow(elem.username, elem._id)} >Following</button>}
+                                        {(elem.info == "follows you" || elem.info == "new user") ? <button className="follow" onClick={() => checkFollow(elem.username, elem._id)}>Follow</button> : <button className="follow" style={{ color: "darkGray" }} onClick={() => checkFollow(elem.username, elem._id)} >Following</button>}
 
                                     </div>
                                 </>

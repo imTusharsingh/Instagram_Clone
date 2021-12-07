@@ -11,6 +11,8 @@ const ALLPOST = () => {
     const [storeonlineuser, setstoreonlineuser] = useState();
     const [storeonlinename, setstoreonlinename] = useState();
     const [commentbyuser, setcommentbyuser] = useState();
+    const [show, setshow] = useState(3);
+    const [cid,setcid] = useState();
 
 
     const [commentId, setcommentId] = useState()
@@ -118,6 +120,11 @@ const ALLPOST = () => {
         }
     }
 
+    const funshow=(length,id)=>{
+        setshow(length);
+        setcid(id);
+    }
+
     const settingcommentbyuser = (id, e) => {
 
         setcommentId(id)
@@ -140,7 +147,7 @@ const ALLPOST = () => {
                     <>
                         <div className="allnopostavailabewrapper">
                             <h1 className="allnotpostavailable">NO POST AVAILABLE!</h1>
-                            <h4>FOLLOW USERS OR VISIT ALLPOSTS <i className="allnav_icon far fa-compass"></i></h4>
+                           
                         </div>
                     </> :
                     <>
@@ -149,7 +156,7 @@ const ALLPOST = () => {
                             return (
                                 <>
 
-                                    <div className="allpost_section" key="post">
+                                    <div className="allpost_section" key={currElem._id}>
 
 
                                         <div className="allpost_header">
@@ -172,28 +179,55 @@ const ALLPOST = () => {
 
 
                                                 {currElem.likes.includes(storeonlineuser) ? <i className="allreact_icon fas fa-heart" onClick={() => like(currElem._id)}></i> : <i className="allreact_icon far fa-heart" onClick={() => like(currElem._id)}></i>}
-                                                <i className="allreact_icon far fa-comment"></i>
+                                         
+                                                {(show == 3) ?
+                                                           <i className="allreact_icon far fa-comment" onClick={ ()=>funshow(currElem.comments.length,currElem._id)}></i>:
+                                                           <>
+                                                            {(cid==currElem._id)? <i className="allreact_icon fas fa-comment" ></i>:
+                                                             <i className="allreact_icon far fa-comment" onClick={ ()=>funshow(currElem.comments.length,currElem._id)}></i>}
+                                                             </>}
 
                                             </div>
                                             <div className="allviews">
                                                 <h2 ><strong>{currElem.likes.length}</strong> likes</h2>
                                             </div>
-                                            <button className="allall_comment">
-                                                View all {currElem.comments.length} comments
-                                            </button>
+
+                                            {(show == 3) ?
+                                                        <button className="allall_comment" onClick={() => funshow(currElem.comments.length,currElem._id)}
+                                                        style={{background:"transparent",border:"none",cursor:"pointer",outline:"none"}}>
+                                                            View {currElem.comments.length} comments
+                                                        </button> :<>
+                                                        {(cid==currElem._id)? <button className="allall_comment" onClick={() => setshow(3)}
+                                                        style={{background:"transparent",border:"none",cursor:"pointer",outline:"none"}}>
+                                                            Hide comments
+                                                        </button>:<button className="allall_comment" onClick={() => funshow(currElem.comments.length,currElem._id)}
+                                                        style={{background:"transparent",border:"none",cursor:"pointer",outline:"none"}}>
+                                                            View {currElem.comments.length} comments
+                                                        </button>}</>
+                                                       }
+                                           
 
                                             <div className="allcomments">
 
 
-                                                {currElem.comments.slice(0).reverse().map((elem) => {
+                                                {currElem.comments.slice(0).reverse().map((elem,index) => {
                                                     return (
                                                         <>
-                                                            <div className="allcomment" key='commentsgcg' style={{marginTop:".55rem"}}>
-                                                                <Avatar alt={elem.commentedBy.username} src={elem.commentedBy.profileImage.image} style={{ width: "2.1rem", height: "2.1rem", fontSize: "1.2rem", fontWeight: "bolder", background: "rgb(37,37,37)", textTransform: "capitalize", marginRight: ".5rem" }} />
-                                                                <h2>{elem.commentedBy.username}</h2>
-                                                                <span>{elem.commentbyuser}</span>
-                                                            </div>
-
+                                                         {(cid==currElem._id)?<>
+                                                                    <div key={elem._id}className={(index < show) ? "allcomment" : "allcomment deactive"}>
+                                                                        <Avatar alt={elem.commentedBy.username} src={elem.commentedBy.profileImage.image} style={{ width: "1.8rem", height: "1.8rem", fontSize: "1rem", fontWeight: "bolder", background: "rgb(37,37,37)", textTransform: "capitalize", marginRight: ".5rem" }} />
+                                                                        <h2>{elem.commentedBy.username}</h2>
+                                                                        <span>{elem.commentbyuser}</span>
+                                                                    </div>
+                                                                </>:
+                                                                <>
+                                                                 <div key={elem._id} className={(index < 3) ? "allcomment" : "allcomment deactive"}>
+                                                                        <Avatar alt={elem.commentedBy.username} src={elem.commentedBy.profileImage.image} style={{ width: "1.8rem", height: "1.8rem", fontSize: "1rem", fontWeight: "bolder", background: "rgb(37,37,37)", textTransform: "capitalize", marginRight: ".5rem" }} />
+                                                                        <h2>{elem.commentedBy.username}</h2>
+                                                                        <span>{elem.commentbyuser}</span>
+                                                                    </div>
+                                                                </>}
+                                                           
                                                         </>
                                                     )
                                                 })}
@@ -205,7 +239,7 @@ const ALLPOST = () => {
 
                                         <div className="allpostfooter">
                                             <i className="allfooter_icon far fa-smile"></i>
-                                            <input type="text" placeholder="Add a comment" value={(commentId == currElem._id) ? commentbyuser : null} onChange={(e) => settingcommentbyuser(currElem._id, e)} />
+                                            <input type="text" placeholder="Add a comment" value={(commentId == currElem._id) ? commentbyuser : ""} onChange={(e) => settingcommentbyuser(currElem._id, e)} />
                                             {(commentbyuser) ? <p className="allcomment_post_btn active" onClick={() => commentload(currElem._id, commentbyuser)} >Post</p> :
                                                 <p className="allcomment_post_btn">Post</p>}
 

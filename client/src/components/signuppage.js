@@ -4,6 +4,7 @@ import { NavLink ,useHistory} from 'react-router-dom'
 
 const Signuppage = () => {
     const history=useHistory();
+    const [clicked, setclicked] = useState(false)
     const [user, setUser] = useState({
         email: "", username: "", name: "", password: ""
     });
@@ -17,6 +18,8 @@ const Signuppage = () => {
 
     const postData = async (e) => {
         try {
+
+            setclicked(true);
             e.preventDefault();
 
             const { email, name, username, password } = user;
@@ -35,6 +38,9 @@ const Signuppage = () => {
 
             });
             const data =await res.json();
+            if(res){
+                setclicked(false)
+            }
             if(res.status===422 || !data){
                 window.alert("Please! fill all the data")
             }
@@ -79,7 +85,11 @@ const Signuppage = () => {
                             <input type="text" name="name" value={user.name} onChange={handleInputs} placeholder="Full Name" />
                             <input type="Username" name="username" value={user.username} onChange={handleInputs} placeholder="Username" />
                             <input type="password" name="password" value={user.password} onChange={handleInputs} placeholder="Password" />
-                            <button name="signup" type="submit" onClick={postData}>Sign up</button>
+                          
+                            {(!clicked)? <button name="signup" type="submit" onClick={postData}>Sign up</button>:
+                            <button class="buttonload">
+                                  <i class="fas fa-spinner fa-spin"  style={{fontSize:"1rem",color:"white",padding:"1rem 1rem" }}></i>Loading
+                            </button>}
                             <span className="termsline">
                                 By signing up,you agree to our
                             </span>
