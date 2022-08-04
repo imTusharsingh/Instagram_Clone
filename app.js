@@ -11,7 +11,7 @@ const User= require('./models/userschema')
 const Post=require('./models/postschema')
 
 
-// const DB= "mongodb://rajputtushar308:BhgQ7eeB49PRteTE@cluster0-shard-00-00.eakxc.mongodb.net:27017,cluster0-shard-00-01.eakxc.mongodb.net:27017,cluster0-shard-00-02.eakxc.mongodb.net:27017/instagram?ssl=true&replicaset=atlas-96fv9t-shard-0&authSource=admin&retryWrites=true&w=majority"
+
 
 
 
