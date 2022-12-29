@@ -30,8 +30,7 @@ const Hero = () => {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json"
-            },
-            credentials: "include"
+            }
         }).then((res) => {
             history.push('/login');
             localStorage.removeItem('user')
