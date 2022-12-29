@@ -65,7 +65,8 @@ const Profile = () => {
                 },
                 body: JSON.stringify({
                     secure_url, public_id
-                })
+                }),
+                credentials: "include"
             }
             )
             const data = res.json();
@@ -99,7 +100,8 @@ const Profile = () => {
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json"
-                }
+                },
+                credentials: "include"
             });
             const mypostdata = await res.json();
 

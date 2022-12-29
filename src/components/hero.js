@@ -30,7 +30,8 @@ const Hero = () => {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json"
-            }
+            },
+            credentials: "include"
         }).then((res) => {
             history.push('/login');
             localStorage.removeItem('user')
@@ -48,7 +49,8 @@ const Hero = () => {
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json"
-                }
+                },
+                credentials: "include"
             });
             const data = await res.json();
 
@@ -147,7 +149,8 @@ const Hero = () => {
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json"
-                }
+                },
+                credentials: "include"
             });
 
 
