@@ -18,14 +18,14 @@ const Hero = () => {
     const [commentId, setcommentId] = useState()
     const [suggestiondata, setsuggestiondata] = useState();
     const [show, setshow] = useState(3);
-    const [cid,setcid] = useState();
+    const [cid, setcid] = useState();
     const [cookies, removeCookie] = useCookies();
     const { state, dispatch } = useContext(Usercontext)
 
 
 
     const logout = async () => {
-        fetch('/signout', {
+        fetch('https://instagramcloneapi-9613.onrender.com/signout', {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -44,7 +44,7 @@ const Hero = () => {
 
     const callPost = async () => {
         try {
-            const res = await fetch('/followedpost', {
+            const res = await fetch('https://instagramcloneapi-9613.onrender.com/followedpost', {
                 method: "GET",
                 headers: {
                     Accept: "application/json",
@@ -77,7 +77,7 @@ const Hero = () => {
     const like = async (post_Id) => {
 
         try {
-            const res = await fetch('/checklikes', {
+            const res = await fetch('https://instagramcloneapi-9613.onrender.com/checklikes', {
                 method: "put",
                 headers: {
                     Accept: "application/json",
@@ -101,7 +101,7 @@ const Hero = () => {
     const deletePost = async (public_id) => {
         try {
             console.log("enter front delete")
-            const res = await fetch('/deletepost', {
+            const res = await fetch('https://instagramcloneapi-9613.onrender.com/deletepost', {
                 method: "post",
                 headers: {
                     Accept: "application/json",
@@ -121,7 +121,7 @@ const Hero = () => {
 
     const commentload = async (post_id, commentbyuser) => {
         try {
-            const res = await fetch('/comment', {
+            const res = await fetch('https://instagramcloneapi-9613.onrender.com/comment', {
                 method: 'put',
                 headers: {
                     Accept: "application/json",
@@ -144,7 +144,7 @@ const Hero = () => {
 
     const suggestions = async () => {
         try {
-            const res = await fetch('/suggestion', {
+            const res = await fetch('https://instagramcloneapi-9613.onrender.com/suggestion', {
                 method: "POST",
                 headers: {
                     Accept: "application/json",
@@ -171,7 +171,7 @@ const Hero = () => {
 
     const checkFollow = async (username, usernameid) => {
         try {
-            const res = await fetch('/follow', {
+            const res = await fetch('https://instagramcloneapi-9613.onrender.com/follow', {
                 method: 'put',
                 headers: {
                     Accept: 'apllication/json',
@@ -198,7 +198,7 @@ const Hero = () => {
         }
     }
 
-    const funshow=(length,id)=>{
+    const funshow = (length, id) => {
         setshow(length);
         setcid(id);
     }
@@ -255,7 +255,7 @@ const Hero = () => {
 
                                                 <div className="post_header">
                                                     <div className="post_headerleft">
-                                                      
+
                                                         <Avatar alt={currElem.postedBy.username} src={currElem.postedBy.profileImage.image} style={{ width: "2.5rem", height: "2.5rem", fontSize: "1.5rem", fontWeight: "bolder", background: "rgb(37,37,37)", textTransform: "capitalize", marginLeft: "1rem", marginRight: ".7rem" }} />
                                                         <h2 ><Link to={`/profile/${currElem.postedBy.username}`} style={{ textDecoration: "none", color: "black" }}>{currElem.postedBy.username}</Link></h2>
                                                     </div>
@@ -274,31 +274,31 @@ const Hero = () => {
 
 
                                                         {currElem.likes.includes(storeonlineuser) ? <i className="react_icon fas fa-heart" onClick={() => like(currElem._id)}></i> : <i className="react_icon far fa-heart" onClick={() => like(currElem._id)}></i>}
-                                                      
-                                                          {(show == 3) ?
-                                                           <i className="react_icon far fa-comment" onClick={ ()=>funshow(currElem.comments.length,currElem._id)}></i>:
-                                                           <>
-                                                            {(cid==currElem._id)? <i className="react_icon fas fa-comment" ></i>:
-                                                             <i className="react_icon far fa-comment" onClick={ ()=>funshow(currElem.comments.length,currElem._id)}></i>}
-                                                             </>}
+
+                                                        {(show == 3) ?
+                                                            <i className="react_icon far fa-comment" onClick={() => funshow(currElem.comments.length, currElem._id)}></i> :
+                                                            <>
+                                                                {(cid == currElem._id) ? <i className="react_icon fas fa-comment" ></i> :
+                                                                    <i className="react_icon far fa-comment" onClick={() => funshow(currElem.comments.length, currElem._id)}></i>}
+                                                            </>}
 
                                                     </div>
                                                     <div className="views">
                                                         <h2 ><strong>{currElem.likes.length}</strong> likes</h2>
                                                     </div>
                                                     {(show == 3) ?
-                                                        <button className="all_comment" onClick={() => funshow(currElem.comments.length,currElem._id)}
-                                                        style={{background:"transparent",border:"none",cursor:"pointer",outline:"none"}}>
+                                                        <button className="all_comment" onClick={() => funshow(currElem.comments.length, currElem._id)}
+                                                            style={{ background: "transparent", border: "none", cursor: "pointer", outline: "none" }}>
                                                             View {currElem.comments.length} comments
-                                                        </button> :<>
-                                                        {(cid==currElem._id)? <button className="all_comment" onClick={() => setshow(3)}
-                                                        style={{background:"transparent",border:"none",cursor:"pointer",outline:"none"}}>
-                                                            Hide comments
-                                                        </button>:<button className="all_comment" onClick={() => funshow(currElem.comments.length,currElem._id)}
-                                                        style={{background:"transparent",border:"none",cursor:"pointer",outline:"none"}}>
-                                                            View {currElem.comments.length} comments
-                                                        </button>}</>
-                                                       }
+                                                        </button> : <>
+                                                            {(cid == currElem._id) ? <button className="all_comment" onClick={() => setshow(3)}
+                                                                style={{ background: "transparent", border: "none", cursor: "pointer", outline: "none" }}>
+                                                                Hide comments
+                                                            </button> : <button className="all_comment" onClick={() => funshow(currElem.comments.length, currElem._id)}
+                                                                style={{ background: "transparent", border: "none", cursor: "pointer", outline: "none" }}>
+                                                                View {currElem.comments.length} comments
+                                                            </button>}</>
+                                                    }
 
                                                     <div className="comments">
 
@@ -306,21 +306,21 @@ const Hero = () => {
                                                         {currElem.comments.slice(0).reverse().map((elem, index) => {
                                                             return (
                                                                 <>
-                                                                {(cid==currElem._id)?<>
-                                                                    <div key={elem._id} className={(index < show) ? "comment" : "comment deactive"}>
-                                                                        <Avatar alt={elem.commentedBy.username} src={elem.commentedBy.profileImage.image} style={{ width: "1.8rem", height: "1.8rem", fontSize: "1rem", fontWeight: "bolder", background: "rgb(37,37,37)", textTransform: "capitalize", marginRight: ".5rem" }} />
-                                                                        <h2>{elem.commentedBy.username}</h2>
-                                                                        <span>{elem.commentbyuser}</span>
-                                                                    </div>
-                                                                </>:
-                                                                <>
-                                                                 <div key={elem._id} className={(index < 3) ? "comment" : "comment deactive"}>
-                                                                        <Avatar alt={elem.commentedBy.username} src={elem.commentedBy.profileImage.image} style={{ width: "1.8rem", height: "1.8rem", fontSize: "1rem", fontWeight: "bolder", background: "rgb(37,37,37)", textTransform: "capitalize", marginRight: ".5rem" }} />
-                                                                        <h2>{elem.commentedBy.username}</h2>
-                                                                        <span>{elem.commentbyuser}</span>
-                                                                    </div>
-                                                                </>}
-                                                                   
+                                                                    {(cid == currElem._id) ? <>
+                                                                        <div key={elem._id} className={(index < show) ? "comment" : "comment deactive"}>
+                                                                            <Avatar alt={elem.commentedBy.username} src={elem.commentedBy.profileImage.image} style={{ width: "1.8rem", height: "1.8rem", fontSize: "1rem", fontWeight: "bolder", background: "rgb(37,37,37)", textTransform: "capitalize", marginRight: ".5rem" }} />
+                                                                            <h2>{elem.commentedBy.username}</h2>
+                                                                            <span>{elem.commentbyuser}</span>
+                                                                        </div>
+                                                                    </> :
+                                                                        <>
+                                                                            <div key={elem._id} className={(index < 3) ? "comment" : "comment deactive"}>
+                                                                                <Avatar alt={elem.commentedBy.username} src={elem.commentedBy.profileImage.image} style={{ width: "1.8rem", height: "1.8rem", fontSize: "1rem", fontWeight: "bolder", background: "rgb(37,37,37)", textTransform: "capitalize", marginRight: ".5rem" }} />
+                                                                                <h2>{elem.commentedBy.username}</h2>
+                                                                                <span>{elem.commentbyuser}</span>
+                                                                            </div>
+                                                                        </>}
+
 
                                                                 </>
                                                             )

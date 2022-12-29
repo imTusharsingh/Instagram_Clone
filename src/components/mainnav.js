@@ -12,14 +12,14 @@ const Mainnav = () => {
     const [posttype, setPosttype] = useState("");
     const [public_id, setpublic_id] = useState("");
     const [storeonlineuser, setstoreonlineuser] = useState();
-    const { state, dispatch } = useContext(Usercontext) 
+    const { state, dispatch } = useContext(Usercontext)
     const toggle = () => {
         setToggleButton(!toggleButton)
     }
 
-   
 
-   
+
+
 
 
 
@@ -27,7 +27,7 @@ const Mainnav = () => {
     const Post_postData = async () => {
         try {
 
-            const res = await fetch("/addpost", {
+            const res = await fetch("https://instagramcloneapi-9613.onrender.com/addpost", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -76,13 +76,13 @@ const Mainnav = () => {
 
             const res = await fetch("https://api.cloudinary.com/v1_1/instadata/image/upload", options);
             const response = await res.json();
-            
-            const { secure_url ,resource_type,public_id} = response;
-            
+
+            const { secure_url, resource_type, public_id } = response;
+
             setPost(secure_url);
             resource_type && setPosttype(resource_type);
             public_id && setpublic_id(public_id)
-          
+
 
         } catch (err) {
             console.log(err)
@@ -108,10 +108,10 @@ const Mainnav = () => {
                         </div>
 
                         <NavLink to="/"> <i className="nav_icon fas fa-home"></i></NavLink>
-                        <i className="nav_icon fab fa-facebook-messenger" style={{cursor:"default",opacity:"0.3"}}></i>
+                        <i className="nav_icon fab fa-facebook-messenger" style={{ cursor: "default", opacity: "0.3" }}></i>
                         <i className="nav_icon fas fa-plus-square" onClick={toggle}></i>
                         <NavLink to="/allpost"><i className="nav_icon fas fa-compass" ></i></NavLink>
-                        <i className="nav_icon fas fa-heart" style={{cursor:"default",opacity:"0.3"}}></i>
+                        <i className="nav_icon fas fa-heart" style={{ cursor: "default", opacity: "0.3" }}></i>
                         <NavLink to={(state) && `/profile/${state.username}`}><i className="nav_icon fas fa-user-circle"></i></NavLink>
                     </div>
                     <div></div>
@@ -123,9 +123,9 @@ const Mainnav = () => {
                 <div className="addpost_wrapper">
                     {/* <input type="file" placeholder="Select the image"  name="post"  value={post} onChange={(e)=>setPost(e.target.value)} /> */}
                     <input type="file" placeholder="Select the image" onChange={(e) => setImage(e.target.files[0])} />
-                    
+
                     <input type="text" placeholder="Add the caption.." name="caption" value={caption} onChange={(e) => setCaption(e.target.value)} />
-                    <button type="submit" onClick={()=>uploadImage()}>Submit</button>
+                    <button type="submit" onClick={() => uploadImage()}>Submit</button>
                 </div>
             </div>
             <div className={toggleButton ? "overlay active" : "overlay"} id="overlay" onClick={toggle}></div>

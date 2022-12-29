@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import "./signup.css"
-import { NavLink ,useHistory} from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 
 const Signuppage = () => {
-    const history=useHistory();
+    const history = useHistory();
     const [clicked, setclicked] = useState(false)
     const [user, setUser] = useState({
         email: "", username: "", name: "", password: ""
@@ -24,7 +24,7 @@ const Signuppage = () => {
 
             const { email, name, username, password } = user;
 
-            const res = await fetch("/register", {
+            const res = await fetch("https://instagramcloneapi-9613.onrender.com/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -37,23 +37,23 @@ const Signuppage = () => {
                 })
 
             });
-            const data =await res.json();
-            if(res){
+            const data = await res.json();
+            if (res) {
                 setclicked(false)
             }
-            if(res.status===422 || !data){
+            if (res.status === 422 || !data) {
                 window.alert("Please! fill all the data")
             }
-            if(res.status===423){
+            if (res.status === 423) {
                 window.alert("User areday exits")
             }
-            if(res.status===424){
+            if (res.status === 424) {
                 window.alert("User-Name areday exits")
             }
-            if(res.status===500){
+            if (res.status === 500) {
                 window.alert("Failed to Register")
             }
-            if(res.status===201){
+            if (res.status === 201) {
                 window.alert("Registered Succesfully")
                 history.push("/login")
             }
@@ -85,11 +85,11 @@ const Signuppage = () => {
                             <input type="text" name="name" value={user.name} onChange={handleInputs} placeholder="Full Name" />
                             <input type="Username" name="username" value={user.username} onChange={handleInputs} placeholder="Username" />
                             <input type="password" name="password" value={user.password} onChange={handleInputs} placeholder="Password" />
-                          
-                            {(!clicked)? <button name="signup" type="submit" onClick={postData}>Sign up</button>:
-                            <button class="buttonload">
-                                  <i class="fas fa-spinner fa-spin"  style={{fontSize:"1rem",color:"white",padding:"1rem 1rem" }}></i>Loading
-                            </button>}
+
+                            {(!clicked) ? <button name="signup" type="submit" onClick={postData}>Sign up</button> :
+                                <button class="buttonload">
+                                    <i class="fas fa-spinner fa-spin" style={{ fontSize: "1rem", color: "white", padding: "1rem 1rem" }}></i>Loading
+                                </button>}
                             <span className="termsline">
                                 By signing up,you agree to our
                             </span>

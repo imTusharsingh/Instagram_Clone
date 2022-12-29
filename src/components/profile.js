@@ -57,7 +57,7 @@ const Profile = () => {
 
             const { secure_url, public_id } = response;
 
-            const res = await fetch('/editprofile', {
+            const res = await fetch('https://instagramcloneapi-9613.onrender.com/editprofile', {
                 method: "POST",
                 headers: {
                     Accept: "application/json",
@@ -72,16 +72,16 @@ const Profile = () => {
             const data = res.json();
             if (res.status == 201) {
                 window.alert("profile picture changed succesfully")
-                let data={
-                    email:state.email,
-                    username:state.username,
-                    name:state.name,
-                    _id:state._id,
-                    image:mainprofileimage
-                    }
-                    dispatch({type:"USER",payload:data})
-                    localStorage.setItem('user',JSON.stringify(data))
-                
+                let data = {
+                    email: state.email,
+                    username: state.username,
+                    name: state.name,
+                    _id: state._id,
+                    image: mainprofileimage
+                }
+                dispatch({ type: "USER", payload: data })
+                localStorage.setItem('user', JSON.stringify(data))
+
                 callMyPost();
             } else {
                 console.log("error error")
@@ -95,7 +95,7 @@ const Profile = () => {
 
     const callMyPost = async () => {
         try {
-            const res = await fetch(`/mypost/${username}`, {
+            const res = await fetch(`https://instagramcloneapi-9613.onrender.com/mypost/${username}`, {
                 method: "GET",
                 headers: {
                     Accept: "application/json",
@@ -113,10 +113,10 @@ const Profile = () => {
             setstorefollowing(finduser.following);
             setstorefollowedBY(finduser.followedBy);
             setmainprofileimage(finduser.profileImage.image);
-            {(finduser.profileImage.image)&& setprofileimageviwer(finduser.profileImage.image)}
-           
-            
-            
+            { (finduser.profileImage.image) && setprofileimageviwer(finduser.profileImage.image) }
+
+
+
 
 
             setuserpost(data)
@@ -130,7 +130,7 @@ const Profile = () => {
 
         try {
 
-            const res = await fetch('/checklikes', {
+            const res = await fetch('https://instagramcloneapi-9613.onrender.com/checklikes', {
                 method: "put",
                 headers: {
                     Accept: "application/json",
@@ -154,7 +154,7 @@ const Profile = () => {
 
     const checkFollow = async (username, usernameid) => {
         try {
-            const res = await fetch('/follow', {
+            const res = await fetch('https://instagramcloneapi-9613.onrender.com/follow', {
                 method: 'put',
                 headers: {
                     Accept: 'apllication/json',
@@ -183,7 +183,7 @@ const Profile = () => {
 
     const commentload = async (post_id, commentbyuser) => {
         try {
-            const res = await fetch('/comment', {
+            const res = await fetch('https://instagramcloneapi-9613.onrender.com/comment', {
                 method: 'put',
                 headers: {
                     Accept: "application/json",
@@ -207,7 +207,7 @@ const Profile = () => {
     const deletePost = async (public_id) => {
         try {
             console.log("enter front delete")
-            const res = await fetch('/deletepost', {
+            const res = await fetch('https://instagramcloneapi-9613.onrender.com/deletepost', {
                 method: "post",
                 headers: {
                     Accept: "application/json",
@@ -228,7 +228,7 @@ const Profile = () => {
 
     useEffect(() => {
         callMyPost()
-        
+
     }, [])
 
 
@@ -243,15 +243,15 @@ const Profile = () => {
 
     }
 
-    const imageHandler =(e) =>{
-        const reader =new FileReader();
-            reader.onload=()=>{
-                if(reader.readyState === 2){
-                    setprofileimageviwer(reader.result)
-                }
+    const imageHandler = (e) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            if (reader.readyState === 2) {
+                setprofileimageviwer(reader.result)
             }
-            reader.readAsDataURL(e.target.files[0])
-            setprofileimage(e.target.files[0])
+        }
+        reader.readAsDataURL(e.target.files[0])
+        setprofileimage(e.target.files[0])
     }
 
     return (
@@ -262,31 +262,31 @@ const Profile = () => {
                 <div className="profilehead">
                     <div></div>
                     <div className="profilemiddlegrid">
-                    <div className="profilePhoto">
-                        <Avatar alt="storeonlineuser" src={mainprofileimage} style={{ width: "12rem", height: "12rem", fontSize: "9rem" }} />
-                    </div>
-                    <div className="profile_info">
-                        <div className="profile_info_top">
-                            <h2>{(storeonlineuser) ? storeonlineuser : `Loading...`}</h2>
-                            {(state && (state.username != storeonlineuser)) &&
-                                <>
-                                    {storefollowedBy.includes(state && state._id) ?
-                                        <button className="Followbtn" style={{ color: "black", background: "white" }} onClick={() => checkFollow(storeonlineuser, storeonlineuserid)}>Following</button> :
-                                        <button className="Followbtn" style={{ color: "white", background: "dodgerblue" }} onClick={() => checkFollow(storeonlineuser, storeonlineuserid)}>Follow</button>}
-                                </>}
-                            {(state && (state.username == storeonlineuser)) &&
-                                <button style={{ opacity: 0.5, cursor: "default" }} onClick={() => editprofileactive()}>Edit Profile</button>}
+                        <div className="profilePhoto">
+                            <Avatar alt="storeonlineuser" src={mainprofileimage} style={{ width: "12rem", height: "12rem", fontSize: "9rem" }} />
+                        </div>
+                        <div className="profile_info">
+                            <div className="profile_info_top">
+                                <h2>{(storeonlineuser) ? storeonlineuser : `Loading...`}</h2>
+                                {(state && (state.username != storeonlineuser)) &&
+                                    <>
+                                        {storefollowedBy.includes(state && state._id) ?
+                                            <button className="Followbtn" style={{ color: "black", background: "white" }} onClick={() => checkFollow(storeonlineuser, storeonlineuserid)}>Following</button> :
+                                            <button className="Followbtn" style={{ color: "white", background: "dodgerblue" }} onClick={() => checkFollow(storeonlineuser, storeonlineuserid)}>Follow</button>}
+                                    </>}
+                                {(state && (state.username == storeonlineuser)) &&
+                                    <button style={{ opacity: 0.5, cursor: "default" }} onClick={() => editprofileactive()}>Edit Profile</button>}
 
+                            </div>
+                            <div className="profileinfomiddle">
+                                <h2 className="post"><strong>{userpost.length}</strong> posts</h2>
+                                <h2 className="followers"><strong>{storefollowedBy.length}</strong> followers</h2>
+                                <h2 className="following"><strong>{storefollowing.length}</strong> following</h2>
+                            </div>
+                            <div className="profileinfobottom">
+                                <h2>{(storeonlinename) && storeonlinename}</h2>
+                            </div>
                         </div>
-                        <div className="profileinfomiddle">
-                            <h2 className="post"><strong>{userpost.length}</strong> posts</h2>
-                            <h2 className="followers"><strong>{storefollowedBy.length}</strong> followers</h2>
-                            <h2 className="following"><strong>{storefollowing.length}</strong> following</h2>
-                        </div>
-                        <div className="profileinfobottom">
-                            <h2>{(storeonlinename) && storeonlinename}</h2>
-                        </div>
-                    </div>
                     </div>
                     <div></div>
                 </div>
@@ -297,143 +297,143 @@ const Profile = () => {
                 <div className="profilenavbar">
                     <div></div>
                     <div className="profilenavbarmiddile">
-                    <div className="block">
-                        <i className="fa fa-table" > POSTS</i>
-                    </div>
-                    <div className="block">
-                        <i className="fa fa-tv" style={{ opacity: 0.5, cursor: "default" }}> IGTV</i>
-                    </div>
-                    <div className="block">
-                        <i className="fa fa-bookmark" style={{ opacity: 0.5, cursor: "default" }}> SAVED</i>
-                    </div>
-                    <div className="block" style={{ opacity: 0.5, cursor: "default" }}>
-                        <i className="fa fas fa-user-tag"> TAGGED</i>
-                    </div>
+                        <div className="block">
+                            <i className="fa fa-table" > POSTS</i>
+                        </div>
+                        <div className="block">
+                            <i className="fa fa-tv" style={{ opacity: 0.5, cursor: "default" }}> IGTV</i>
+                        </div>
+                        <div className="block">
+                            <i className="fa fa-bookmark" style={{ opacity: 0.5, cursor: "default" }}> SAVED</i>
+                        </div>
+                        <div className="block" style={{ opacity: 0.5, cursor: "default" }}>
+                            <i className="fa fas fa-user-tag"> TAGGED</i>
+                        </div>
                     </div>
                     <div></div>
                 </div>
 
-                                <div className="userpostcontainermaingrid">
-                                    <div></div>
-                <div className="userpostcontainer">
-                    {userpost.slice(0).reverse().map((currElem, index) => {
-                        return (
-                            <>
-                                <div className="postcard" key={currElem._id}>
-                                    {(currElem.posts.posttype == "image") && <img className="post_image" src={currElem.posts.post} alt="" onClick={() => fullpost(index)} />}
-                                    {(currElem.posts.posttype == "video") && <video className="post_image" src={currElem.posts.post} alt="" autoPlay loop muted onClick={() => fullpost(index)} />}
-                                </div>
-
-                                <div className={(postindex == index && fullpostactive) ? "fullpostpage active" : "fullpostpage"}>
-
-                                    <div className="fullpostimage">
-                                        {(currElem.posts.posttype == "image") && <img className="post_image" src={currElem.posts.post} alt="" />}
-                                        {(currElem.posts.posttype == "video") && <video className="post_image" src={currElem.posts.post} alt="" autoPlay loop muted />}
-
+                <div className="userpostcontainermaingrid">
+                    <div></div>
+                    <div className="userpostcontainer">
+                        {userpost.slice(0).reverse().map((currElem, index) => {
+                            return (
+                                <>
+                                    <div className="postcard" key={currElem._id}>
+                                        {(currElem.posts.posttype == "image") && <img className="post_image" src={currElem.posts.post} alt="" onClick={() => fullpost(index)} />}
+                                        {(currElem.posts.posttype == "video") && <video className="post_image" src={currElem.posts.post} alt="" autoPlay loop muted onClick={() => fullpost(index)} />}
                                     </div>
-                                    <div className="rightfullpost">
-                                        <div className="topfullpost">
-                                            <span className="fullpostusername">{storeonlineuser}</span>
 
-                                            {(state && (state.username != storeonlineuser)) &&
-                                                <>
-                                                    {storefollowedBy.includes(state && state._id) ?
-                                                        <button className="Followbtn" style={{ color: "black" }} onClick={() => checkFollow(storeonlineuser, storeonlineuserid)}>Following</button> :
-                                                        <button className="Followbtn" onClick={() => checkFollow(storeonlineuser, storeonlineuserid)}>Follow</button>}
-                                                </>}
-                                            {(storeonlineuser == currElem.postedBy.username) &&
-                                                <button onClick={() => deletePost(currElem.posts.public_id)} style={{ position: "absolute", right: "1rem", background: "none", border: "none", color: "rgba(0,0,0,0.7)", fontSize: "1rem", fontWeight: "bold", cursor: "pointer" }}>delete</button>}
+                                    <div className={(postindex == index && fullpostactive) ? "fullpostpage active" : "fullpostpage"}>
+
+                                        <div className="fullpostimage">
+                                            {(currElem.posts.posttype == "image") && <img className="post_image" src={currElem.posts.post} alt="" />}
+                                            {(currElem.posts.posttype == "video") && <video className="post_image" src={currElem.posts.post} alt="" autoPlay loop muted />}
+
                                         </div>
-                                        <div className="middlefullpost">
-                                            {currElem.caption &&
-                                                <div className="fullpostcaption" style={{ padding: "1rem 1rem" }}>
-                                                    <Avatar alt={currElem.postedBy.username} src={currElem.postedBy.profileImage.image} style={{ fontWeight: "bolder", background: "rgb(37,37,37)", textTransform: "capitalize", marginRight: ".5rem" }} />
-                                                    <h2>{currElem.postedBy.username}</h2>
-                                                    <span>{currElem.caption}</span>
-                                                </div>}
+                                        <div className="rightfullpost">
+                                            <div className="topfullpost">
+                                                <span className="fullpostusername">{storeonlineuser}</span>
 
-                                            {currElem.comments.slice(0).reverse().map((elem) => {
-                                                return (
+                                                {(state && (state.username != storeonlineuser)) &&
                                                     <>
-                                                        <div className="fullpostcomment" key="comment">
-
-
-                                                            <Avatar alt={elem.commentedBy.username} src={elem.commentedBy.profileImage.image} style={{ fontWeight: "bolder", background: "rgb(37,37,37)", textTransform: "capitalize", marginRight: ".5rem" }} />
-
-
-                                                            <h2>{elem.commentedBy.username}</h2>
-                                                            <span>{elem.commentbyuser}</span>
-                                                        </div>
-
-                                                    </>
-                                                )
-                                            })}
-                                        </div>
-                                        <div className="bottomfullpost">
-                                            <div className="reactfullpost">
-                                                <div className="reactlike">
-                                                    {currElem.likes.includes(state && state.username) ?
-                                                        <i className="reactfull_icon fas fa-heart" onClick={() => like(currElem._id)} ></i>
-                                                        : <i className="reactfull_icon far fa-heart" onClick={() => like(currElem._id)}></i>}
-                                                    <i className="reactfull_icon far fa-comment"></i>
-                                                </div>
-                                                <div className="likesfullcount">
-                                                    <h2 ><strong>{currElem.likes.length}</strong> likes</h2>
-                                                </div>
+                                                        {storefollowedBy.includes(state && state._id) ?
+                                                            <button className="Followbtn" style={{ color: "black" }} onClick={() => checkFollow(storeonlineuser, storeonlineuserid)}>Following</button> :
+                                                            <button className="Followbtn" onClick={() => checkFollow(storeonlineuser, storeonlineuserid)}>Follow</button>}
+                                                    </>}
+                                                {(storeonlineuser == currElem.postedBy.username) &&
+                                                    <button onClick={() => deletePost(currElem.posts.public_id)} style={{ position: "absolute", right: "1rem", background: "none", border: "none", color: "rgba(0,0,0,0.7)", fontSize: "1rem", fontWeight: "bold", cursor: "pointer" }}>delete</button>}
                                             </div>
-                                            <div className="commentsectionfullpost">
+                                            <div className="middlefullpost">
+                                                {currElem.caption &&
+                                                    <div className="fullpostcaption" style={{ padding: "1rem 1rem" }}>
+                                                        <Avatar alt={currElem.postedBy.username} src={currElem.postedBy.profileImage.image} style={{ fontWeight: "bolder", background: "rgb(37,37,37)", textTransform: "capitalize", marginRight: ".5rem" }} />
+                                                        <h2>{currElem.postedBy.username}</h2>
+                                                        <span>{currElem.caption}</span>
+                                                    </div>}
 
-                                                <i className="footerfull_icon far fa-smile"></i>
-                                                {(postindex == index) ?
-                                                    <input type="text" placeholder="Add a comment" value={(commentId == currElem._id) ? commentbyuser : ""} onChange={(e) => settingcommentbyuser(currElem._id, e)} /> :
-                                                    <input type="text" placeholder="Add a comment" />}
-                                                {(commentbyuser) ? <p className="commentfull_post_btn active" onClick={() => commentload(currElem._id, commentbyuser)} >Post</p> :
-                                                    <p className="commentfull_post_btn">Post</p>}
+                                                {currElem.comments.slice(0).reverse().map((elem) => {
+                                                    return (
+                                                        <>
+                                                            <div className="fullpostcomment" key="comment">
+
+
+                                                                <Avatar alt={elem.commentedBy.username} src={elem.commentedBy.profileImage.image} style={{ fontWeight: "bolder", background: "rgb(37,37,37)", textTransform: "capitalize", marginRight: ".5rem" }} />
+
+
+                                                                <h2>{elem.commentedBy.username}</h2>
+                                                                <span>{elem.commentbyuser}</span>
+                                                            </div>
+
+                                                        </>
+                                                    )
+                                                })}
+                                            </div>
+                                            <div className="bottomfullpost">
+                                                <div className="reactfullpost">
+                                                    <div className="reactlike">
+                                                        {currElem.likes.includes(state && state.username) ?
+                                                            <i className="reactfull_icon fas fa-heart" onClick={() => like(currElem._id)} ></i>
+                                                            : <i className="reactfull_icon far fa-heart" onClick={() => like(currElem._id)}></i>}
+                                                        <i className="reactfull_icon far fa-comment"></i>
+                                                    </div>
+                                                    <div className="likesfullcount">
+                                                        <h2 ><strong>{currElem.likes.length}</strong> likes</h2>
+                                                    </div>
+                                                </div>
+                                                <div className="commentsectionfullpost">
+
+                                                    <i className="footerfull_icon far fa-smile"></i>
+                                                    {(postindex == index) ?
+                                                        <input type="text" placeholder="Add a comment" value={(commentId == currElem._id) ? commentbyuser : ""} onChange={(e) => settingcommentbyuser(currElem._id, e)} /> :
+                                                        <input type="text" placeholder="Add a comment" />}
+                                                    {(commentbyuser) ? <p className="commentfull_post_btn active" onClick={() => commentload(currElem._id, commentbyuser)} >Post</p> :
+                                                        <p className="commentfull_post_btn">Post</p>}
+
+                                                </div>
+
+
 
                                             </div>
-
-
-
                                         </div>
                                     </div>
-                                </div>
-                              
-                            </>
-                        )
 
-                    })}
-                </div>
-                <div></div>
-                </div>
+                                </>
+                            )
 
-
-                    <div className="profilefootergrid">
+                        })}
+                    </div>
                     <div></div>
-                <div className="profile_footer">
-                    <div className="topfooter">
-                        <a href="#">About</a>
-                        <a href="#">Blog</a>
-                        <a href="#">Jobs</a>
-                        <a href="#">Help</a>
-                        <a href="#">API</a>
-                        <a href="#">Privacy</a>
-                        <a href="#">Terms</a>
-                        <a href="#">Top Accounts</a>
-                        <a href="#">Hastags</a>
-                        <a href="#">Locations</a>
-                        <a className="last" href="#">Instagram Lite</a>
-                    </div>
-                    <div className="bottomfooter">
-                        <select name="language" id="">
-                            <option value="english">English</option>
-                            <option value="hindi">Hindi</option>
-                            <option value="gujarati">Gujarati</option>
-                        </select>
-                        <a href="#">© 2021 Instagram from Facebook</a>
-                    </div>
-
                 </div>
-                <div></div>
+
+
+                <div className="profilefootergrid">
+                    <div></div>
+                    <div className="profile_footer">
+                        <div className="topfooter">
+                            <a href="#">About</a>
+                            <a href="#">Blog</a>
+                            <a href="#">Jobs</a>
+                            <a href="#">Help</a>
+                            <a href="#">API</a>
+                            <a href="#">Privacy</a>
+                            <a href="#">Terms</a>
+                            <a href="#">Top Accounts</a>
+                            <a href="#">Hastags</a>
+                            <a href="#">Locations</a>
+                            <a className="last" href="#">Instagram Lite</a>
+                        </div>
+                        <div className="bottomfooter">
+                            <select name="language" id="">
+                                <option value="english">English</option>
+                                <option value="hindi">Hindi</option>
+                                <option value="gujarati">Gujarati</option>
+                            </select>
+                            <a href="#">© 2021 Instagram from Facebook</a>
+                        </div>
+
+                    </div>
+                    <div></div>
                 </div>
             </div>
 
